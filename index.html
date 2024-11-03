@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="color: darkmagenta;">Calculate the difference between the two dates and return the difference in years, months and days.</h1>
+
+    <script>
+    function dateDifference(startDate, endDate) {
+    let years = endDate.getFullYear() - startDate.getFullYear();
+    let months = endDate.getMonth() - startDate.getMonth();
+    let days = endDate.getDate() - startDate.getDate();
+
+    // Adjust for negative values
+    if (days < 0) {
+        months -= 1;
+        days += new Date(endDate.getFullYear(), endDate.getMonth(), 0).getDate(); // Days in the previous month
+    }
+
+    if (months < 0) {
+        years -= 1;
+        months += 12;
+    }
+
+    return { years, months, days };
+}
+
+// Input dates
+const startDateInput = prompt("Enter the start date (YYYY-MM-DD):");
+const endDateInput = prompt("Enter the end date (YYYY-MM-DD):");
+
+// Convert input strings to Date objects
+const startDate = new Date(startDateInput);
+const endDate = new Date(endDateInput);
+
+// Calculate the difference
+const { years, months, days } = dateDifference(startDate, endDate);
+
+// Display the result
+console.log(`The difference is ${years} years, ${months} months, and ${days} days.`);
+
+
+    </script>
+</body>
+</html>
